@@ -13,7 +13,7 @@ import datetime as dt
 
 Lstm_Models = [tf.keras.models.load_model('Cluster_0_LSTM.h5'),
 tf.keras.models.load_model('Cluster_1_LSTM.h5'),
-tf.keras.models.load_model('Cluster02.h5'),
+tf.keras.models.load_model('cluster02.h5'),
 tf.keras.models.load_model('Cluster_3_LSTM.h5'),
 tf.keras.models.load_model('Cluster_4_LSTM.h5'),
 tf.keras.models.load_model('cluster5.h5'),
