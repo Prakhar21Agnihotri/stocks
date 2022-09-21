@@ -1,0 +1,9 @@
+arch==5.2.0
+numpy==1.22.3
+pandas==1.4.1
+pandas_datareader==0.10.0
+plotly==5.8.2
+pyparsing==3.0.7
+scikit_learn==1.1.2
+streamlit==1.10.0
+tensorflow==2.8.0
