@@ -123,7 +123,7 @@ def GARCH_Chart(name,Original,Predicted,chart_title,chart_bg,p,q):
     am = arch_model(Daily_Ret, vol="Garch", p=p, q=q, dist="Normal")
     res = am.fit(disp='off')
     forecasts = res.forecast(reindex=False,horizon=7)
-    Pred = pd.Series(np.sqrt(forecasts.variance.values[-1,:]), index=Dt)
+    Pred = pd.Series(np.sqrt(forecasts.variance.values[-1,:]), index=Dt, name = "Magnitude of Volatility")
     if GA:
         st.table(Pred/100)
     else:
