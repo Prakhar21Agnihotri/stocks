@@ -77,7 +77,7 @@ def LSTM(name,Prediction,Original,bgcol,model):
     Forecasted = T[-30:]
     datelist = pd.bdate_range(dt.date.today(), periods=30).tolist()
     Dt = [ str(x).split()[0] +" | " + str(x.strftime('%A')) for x in datelist]
-    Table = pd.Series(Forecasted,Dt,name = "Close")
+    Table = pd.Series(Forecasted,Dt,name = "Adjusted Closing Price")
     st.subheader("{} Days Forecast".format(len(Forecasted)))
 
     Forecast_Chart = go.Scatter(
