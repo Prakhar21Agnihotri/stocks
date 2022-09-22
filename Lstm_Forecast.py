@@ -71,8 +71,8 @@ def LSTM(name,Prediction,Original,bgcol,model):
 
     for c in range(T.shape[0],T.shape[0]+30):
         l = Forecast(T,c,model)
-        list(T).append(l)
-        np.array(T)
+        T = list(T).append(l[0])
+        T = np.array(T)
     
     Forecasted = T[-30:]
     datelist = pd.bdate_range(dt.date.today(), periods=30).tolist()
