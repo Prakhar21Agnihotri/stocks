@@ -28,14 +28,14 @@ def LSTM(name,Prediction,Original,bgcol,model):
         Modified_dataframe_chart = go.Scatter(
                         x=Original.index[30:],
                         y=Prediction.reshape(-1),
-                        name = "Predicted Adjusted Closing Price",
+                        name = "Predicted Adjusted Closing Price", #Predicted Adjusted Closing Price
                         marker_color = '#FFFFFF'
                     )
 
         Original_dataframe_chart = go.Scatter(
                         x=Original.index[30:],
-                        y=Original['Adj Close'].values[30:],
-                        name = "Daily Adjusted Closing Price",
+                        y=Original['Close'].values[30:],
+                        name = "Daily Closing Price", #Daily Adjusted Closing Price
                         marker_color='#996699'
                         
                     )
@@ -46,14 +46,14 @@ def LSTM(name,Prediction,Original,bgcol,model):
         Modified_dataframe_chart = go.Scatter(
                         x=Original.index[100:],
                         y=Prediction.reshape(-1),
-                        name = "Predicted Adjusted Closing Price",
+                        name = "Predicted Closing Price", #Predicted Adjusted Closing Price
                         marker_color = '#FFFFFF'
                     )
 
         Original_dataframe_chart = go.Scatter(
                         x=Original.index[100:],
                         y=Original['Adj Close'].values[100:],
-                        name = "Daily Adjusted Closing Price",
+                        name = "Daily Closing Price", #Daily Adjusted Closing Price
                         marker_color='#996699'
                         
                     )
@@ -65,9 +65,9 @@ def LSTM(name,Prediction,Original,bgcol,model):
     st.plotly_chart(Lstm_plot,use_container_width=True,sharing="streamlit")
     
     if model<5:
-        T=Original['Adj Close'].values[-30:]
+        T=Original['Close'].values[-30:] #'Adj Close'
     else:
-        T=Original['Adj Close'].values[-100:]
+        T=Original['Close'].values[-100:] #'Adj Close'
 
     for c in range(T.shape[0],T.shape[0]+30):
         l = Forecast(T,c,model)
@@ -77,7 +77,7 @@ def LSTM(name,Prediction,Original,bgcol,model):
     Forecasted = T[-30:]
     datelist = pd.bdate_range(dt.date.today(), periods=30).tolist()
     Dt = [ str(x).split()[0] +" | " + str(x.strftime('%A')) for x in datelist]
-    Table = pd.Series(Forecasted,Dt,name = "Adjusted Closing Price")
+    Table = pd.Series(Forecasted,Dt,name = "Closing Price") # "Adjusted Closing Price"
     st.subheader("{} Days Forecast".format(len(Forecasted)))
 
     Forecast_Chart = go.Scatter(
