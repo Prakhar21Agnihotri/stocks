@@ -1,7 +1,10 @@
 import pandas as pd
-import pandas_datareader.data as web
 import yfinance as yf
-from yahoofinancials import YahooFinancials
+yf.pdr_override() # <== that's all it takes :-)
+from pandas_datareader import data as pdr
+#import pandas_datareader.data as web
+import yfinance as yf
+
 from Func import *
 from Lstm_Forecast import*
 
@@ -20,7 +23,7 @@ if Selected_Stock not in Selected.keys():
 Selected_LSTM = dict()
 Selected_Movig_Avg, Selected_Stock, start, end = Page("Stocks","Stocks",Stocks)
 if Selected_Stock not in Selected.keys():
-    Selected[Selected_Stock] = yf.download(Stocks.loc[Selected_Stock][0], start= start , end = end,  progress=False)
+    Selected[Selected_Stock] = pdr.get_data_yahoo(Stocks.loc[Selected_Stock][0], start=start, end=end)
     #Selected[Selected_Stock] = web.DataReader(Stocks.loc[Selected_Stock][0], 
     #data_source = 'yahoo',start= start , end = end)
 
