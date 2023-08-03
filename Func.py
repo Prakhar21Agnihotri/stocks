@@ -72,8 +72,8 @@ def MAChart(Selected_Moving_Avg,dataframe,chart_title,chart_bg):
 
     Original_dataframe_chart = go.Scatter(
                 x=dataframe.index[int(Selected_Moving_Avg):],
-                y=dataframe['Close'].values[int(Selected_Moving_Avg):], #Adj Close
-                name = "Close",
+                y=dataframe['Adj Close'].values[int(Selected_Moving_Avg):], #Adj Close
+                name = "Adj Close",
                 marker_color='#FF6700'
                 
             )
@@ -92,7 +92,7 @@ def GARCH_Chart(name,Original,Predicted,chart_title,chart_bg,p,q):
     st.header("Volatality & Daily Returns")
 
     st.subheader("Prediction")
-    Daily_Ret = Original['Close'].pct_change().dropna() #Adj Close
+    Daily_Ret = Original['Adj Close'].pct_change().dropna() #Adj Close
     Modified_dataframe_chart = go.Scatter(
                 x=Daily_Ret.index[-len(Predicted):],
                 y=Daily_Ret.values[-len(Predicted):],
