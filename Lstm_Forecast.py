@@ -35,7 +35,7 @@ def LSTM(name,Prediction,Original,bgcol,model):
         Original_dataframe_chart = go.Scatter(
                         x=Original.index[30:],
                         y=Original['Close'].values[30:],
-                        name = "Daily Closing Price", #Daily Adjusted Closing Price
+                        name = "Daily Adjusted Closing Price", #Daily Adjusted Closing Price
                         marker_color='#996699'
                         
                     )
@@ -46,14 +46,14 @@ def LSTM(name,Prediction,Original,bgcol,model):
         Modified_dataframe_chart = go.Scatter(
                         x=Original.index[100:],
                         y=Prediction.reshape(-1),
-                        name = "Predicted Closing Price", #Predicted Adjusted Closing Price
+                        name = "Predicted Adjusted Closing Price", #Predicted Adjusted Closing Price
                         marker_color = '#FFFFFF'
                     )
 
         Original_dataframe_chart = go.Scatter(
                         x=Original.index[100:],
                         y=Original['Adj Close'].values[100:],
-                        name = "Daily Closing Price", #Daily Adjusted Closing Price
+                        name = "Daily Adjusted Closing Price", #Daily Adjusted Closing Price
                         marker_color='#996699'
                         
                     )
@@ -77,7 +77,7 @@ def LSTM(name,Prediction,Original,bgcol,model):
     Forecasted = T[-30:]
     datelist = pd.bdate_range(dt.date.today(), periods=30).tolist()
     Dt = [ str(x).split()[0] +" | " + str(x.strftime('%A')) for x in datelist]
-    Table = pd.Series(Forecasted,Dt,name = "Closing Price") # "Adjusted Closing Price"
+    Table = pd.Series(Forecasted,Dt,name = "Adjusted Closing Price") # "Adjusted Closing Price"
     st.subheader("{} Days Forecast".format(len(Forecasted)))
 
     Forecast_Chart = go.Scatter(
