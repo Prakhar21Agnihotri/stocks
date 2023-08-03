@@ -1,12 +1,13 @@
 import pandas as pd
 import yfinance as yf
-yf.pdr_override() # <== that's all it takes :-)
-from pandas_datareader import data as pdr
 import pandas_datareader.data as web
 import yfinance as yf
 
 from Func import *
 from Lstm_Forecast import*
+import yfinance as yf
+yf.pdr_override()
+b = yf.download(tickers = ['^GSPC'], start = '2007-03-09', end = dt.datetime.today().strftime('%Y-%m-%d'))
 
 Stocks = pd.read_pickle('Stocks_Name')
 Garch_pq = pd.read_pickle('Garch_pq')
