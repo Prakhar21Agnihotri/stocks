@@ -1,13 +1,10 @@
-import pandas as pd
-import yfinance as yf
-import pandas_datareader.data as web
-import yfinance as yf
-
-from Func import *
-from Lstm_Forecast import*
+import datetime as dt
+from pandas_datareader import data as web
 import yfinance as yf
 yf.pdr_override()
 b = yf.download(tickers = ['^GSPC'], start = '2007-03-09', end = dt.datetime.today().strftime('%Y-%m-%d'))
+from Func import *
+from Lstm_Forecast import*
 
 Stocks = pd.read_pickle('Stocks_Name')
 Garch_pq = pd.read_pickle('Garch_pq')
@@ -20,15 +17,9 @@ Selected = dict()
 Selected_LSTM = dict()
 Selected_Movig_Avg, Selected_Stock, start, end = Page("Stocks","Stocks",Stocks)
 if Selected_Stock not in Selected.keys():
-    Selected = dict()
-Selected_LSTM = dict()
-Selected_Movig_Avg, Selected_Stock, start, end = Page("Stocks","Stocks",Stocks)
-if Selected_Stock not in Selected.keys():
-    #Selected[Selected_Stock] = pdr.get_data_yahoo(Stocks.loc[Selected_Stock][0], start=start, end=end)
     Selected[Selected_Stock] = web.DataReader(Stocks.loc[Selected_Stock][0], 
-    data_source = 'stooq',start= start , end = end)
+    data_source = 'yahoo',start= start , end = end)
 
-    
 
 
 Lstm ,Garch, pq = Cluster(Stocks,Garch_pq,Selected_Stock)
